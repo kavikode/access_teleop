@@ -47,14 +47,23 @@ App = function () {
     var leftForearmWidth=elmntmjpegLeftForearm.clientWidth;
     var leftForearmHeight=elmntmjpegLeftForearm.clientHeight;
 
+    var paper1 = Snap( "#svg1" ); //use element created above
+
+
+    var x = document.createElement("CANVAS");
+    var ctx = x.getContext("2d");
+    ctx.fillStyle = "#FF0000";
+    ctx.fillRect(0, 0, 150, 100);
+
     // Create the right forearm viewer.
     var forearmRViewer = new MJPEGCANVAS.Viewer({
         divID : 'camera1',
         host : 'localhost',
         width : rightForearmWidth,
         height : rightForearmHeight,
-        topic : '/r_forearm_cam/image_raw'
+        topic : '/r_forearm_cam/image_raw',
 //        topic : '/rviz1/camera1/image'
+        overlay: x
     });
 
     // Create the head viewer.
